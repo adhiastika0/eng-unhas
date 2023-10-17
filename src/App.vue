@@ -1,15 +1,27 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Header msg="Welcome to Header App"/>
+  <Dharma msg="Welcome to Dharma App"/>
+  <Galeri msg="Welcome to Galeri App"/>
+  <Sambutan msg="Welcome to Sambutan App"/>
+  <Location msg="Welcome to Location App"/>
+  <Footer msg="Welcome to Footer App"/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import Dharma from './components/Dharma.vue'
+import Galeri from './components/Galeri.vue'
+import Sambutan from './components/Sambutan.vue'
+import Location from './components/Location.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld, Header, Dharma, Footer, Galeri, Location, Sambutan
   }
 }
 </script>
