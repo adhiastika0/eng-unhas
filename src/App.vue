@@ -1,11 +1,10 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
   <Header msg="Welcome to Header App"/>
   <Dharma msg="Welcome to Dharma App"/>
   <Galeri msg="Welcome to Galeri App"/>
   <Sambutan msg="Welcome to Sambutan App"/>
-  <Location msg="Welcome to Location App"/>
+  <Location msg="HASANUDDIN UNIVERSITY" style="color: white; font: Inter;"/>
   <Footer msg="Welcome to Footer App"/>
 </template>
 
