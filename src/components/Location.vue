@@ -1,58 +1,56 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <div class="bg-navy" style="height: 450px; display: flex; margin: 0 100px;">
+      <div style="padding: 20px; margin-left: 60px;">
+        <img class="h-20 w-auto mt-100" src="https://cot.unhas.ac.id/public/homepage/images/img/unhas.png" alt="">
+        <input class="text-black" type="text" placeholder="Search" style="margin-bottom: 10px; margin-top: 10px; width: 400px; height: 35px; padding-left: 20px;">
+        <div class="relative">
+          <button @click="show = !show" class="flex items-center p-2 text-navy bg-white rounded-md" style = "border-radius: 0; text-align: left; width: 400px; height: 35px;">
+            <span class="mr-4 w-500" style="white-space: nowrap; overflow: hidden;">Faculty Of Engineering</span>
+            <svg class="w-5 h-5 text-navy dark:text-navy" viewBox="0 0 20 20" fill="currentColor" style="margin-left: 170px;">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </button>
+          <div v-show="show" class="py-2 mt-2 bg-white rounded-md shadow-xlw-44 ml-40" @mouseenter="isDropdownHovered = true" @mouseleave="isDropdownHovered = false" style="border-radius: 0; margin-left: 0px;">
+            <router-link to="/" class="block px-4 py-2 text-sm text-black hover:bg-red hover:text-white transition-opacity duration-300 ease-in-out" @mouseenter="setHoveredOnDropdown(true)" @mouseleave="setHoveredOnDropdown(false)" style="text-align: left;"> Main Bridge</router-link>
+            <router-link to="/" class="block px-4 py-2 text-sm text-black hover:bg-red hover:text-white transition-opacity duration-300 ease-in-out" @mouseenter="setHoveredOnDropdown(true)" @mouseleave="setHoveredOnDropdown(false)" style="text-align: left;"> CSA Library</router-link>
+            <router-link to="/" class="block px-4 py-2 text-sm text-black hover:bg-red hover:text-white transition-opacity duration-300 ease-in-out" @mouseenter="setHoveredOnDropdown(true)" @mouseleave="setHoveredOnDropdown(false)" style="text-align: left;"> CSA Theater Library</router-link>
+            <router-link to="/" class="block px-4 py-2 text-sm text-black hover:bg-red hover:text-white transition-opacity duration-300 ease-in-out" @mouseenter="setHoveredOnDropdown(true)" @mouseleave="setHoveredOnDropdown(false)" style="text-align: left;"> CSA Library Show Case</router-link>
+            <router-link to="/" class="block px-4 py-2 text-sm text-black hover:bg-red hover:text-white transition-opacity duration-300 ease-in-out" @mouseenter="setHoveredOnDropdown(true)" @mouseleave="setHoveredOnDropdown(false)" style="text-align: left;"> Center of Technology (CoT)</router-link>
+            <router-link to="/" class="block px-4 py-2 text-sm text-black  hover:bg-red hover:text-white transition-opacity duration-300 ease-in-out" @mouseenter="setHoveredOnDropdown(true)" @mouseleave="setHoveredOnDropdown(false)" style="text-align: left;"> CoT Ground Floor</router-link>
+      </div>
+      </div>
+    </div>
+    <img class="position-absolute" src="https://selatan.herald.id/wp-content/uploads/sites/10/2022/03/FT-Unhas.jpg" alt="" style="margin-left: 90px; padding: 60px;">
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Header',
-  props: {
-    msg: String
+  data() {
+  return {
+    show: false,
+    isHovered: false,
+    isHoveredOnDropdown: false,
+    isHoveredOnMainBridge: false
+  };
+},
+methods: {
+  setHoveredOnDropdown(value) {
+      this.isHoveredOnDropdown = value;
+  },
+  setHoveredOnMainBridge(value) {
+    this.isHoveredOnMainBridge = value;
+    this.isHoveredOnDropdown = false;
   }
+}
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.absolute {
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
 </style>
