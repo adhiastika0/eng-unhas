@@ -1,3 +1,4 @@
+
 <template>
   <nav class="navbar">
     <div class="container min-w-full mx-auto py-2 flex items-center bg-navy">
@@ -29,7 +30,6 @@
     </div>
     </nav>
 </template>
-
 
 <script>
 export default {
