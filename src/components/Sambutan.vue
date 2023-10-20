@@ -1,58 +1,16 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="space-y-3 mx-28">
+    <div class="flex justify-center text-navy font-bold font-Montserrat underline decoration-navy text-[25px]">DEAN'S WELCOME REMARKS</div>
+    <div class="container flex justify-center items-center mx-auto p-7 bg-navy space-x-5 rounded-lg">
+      <div class="px-6">
+        <img src="../assets/dekan.png" width="5000">
+      </div>
+      <div class="space-y-4 px-6">
+        <p class="text-[14.5px] text-white font-Inter text-justify">Engineering Faculty of Universitas Hasanuddin has been established since 1960 and ever since has been growing in producing excellent widely accepted graduates throughout the country and overseas employment. With all resources and facilities we have Engineering Faculty of Universitas Hasanuddin is committed to realize its vision to become a leading institution in the field of engineering for global sustainability with the spirit of maritime culture. The main mission of the establishment of the Faculty of Engineering at that time was to provide opportunities for all students from the regions to pursue higher education in order to meet the needs of the technical expert.
+        </p>  
+        <p class="text-[14.5px] text-white font-Inter text-justify">In the beginning, The Faculty of Engineering curriculum was only a single curriculum with a limited number of elective subjects. This curriculum has undergone various changes and developments since 1963, including the transition from the Bachelor Program, the 6-year Bachelor Program, to the Undergraduate Program. In 1985, the Faculty of Engineering UNHAS moved the campus to Tamalanrea. The Faculty of Engineering occupies the 1st floor of the building and part of the Heavy Laboratory building. At the same time, new laboratory equipment was procured. For ten years from 1986 to 1996, the Faculty of Engineering received the Engineer Acceleration Project (PPI) aimed at increasing graduation productivity. In the beginning, the Faculty of Engineering, Hasanuddin University on September 10, 1960 there were only 3 departments, namely Civil Engineering, Mechanical Engineering and Shipping Engineering. Furthermore, the Faculty of Engineering has 6 departments by opening the Department of Electrical Engineering, Architectural Engineering and Geological Engineering with a total of 23 study programs. Along with the development, the Faculty of Engineering Unhas was also built by the Faculty of Engineering which is located at the Gowa Engineering Campus which is currently inaugurated by the Vice President of the Republic of Indonesia, Mr. Jusuf Kalla on June 23, 2018. 5 Doctoral Study Programs and 1 Engineer Professional Education Study Program (PPI). With this study program we are confident to welcome all stake holders within our reach to enroll, collaborate, and share the opportunities that we have to continue developing our nation facing the Indutrial Revolution 4.0 in the future. Welcome to Faculty of Engineering.
+        </p>
+      </div>
+    </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Header',
-  props: {
-    msg: String
-  }
-}
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
