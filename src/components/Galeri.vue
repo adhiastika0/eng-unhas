@@ -66,8 +66,13 @@ export default {
 <template v-slot=swiper-button-next>
   <div class="container min-w-full mx-auto">
       <p class="text-navy flex justify-center text-3xl font-Montserrat font-bold underline pb-5">GALERI</p>
-      <Swiper class="mx-28"
+      <Swiper class="mx-28 max-w-screen-xl"
+      :rewind="true"
       :navigation="true"
+      :autoplay="{
+        delay: 2500,
+        disableOnInteraction: false,
+      }"
       :mousewheel="true"
       :keyboard="true"
       :pagination="{
@@ -80,14 +85,9 @@ export default {
       :scrollBar="{
         clickable: true,
       }"
-      :autoplay="{
-        delay:5000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true
-      }"
       >
         <SwiperSlide class="h-full w-full mb-10" v-for="content in Agenda" :key="content.desc">
-          <img class="rounded-t-lg mx-auto object-fill h-[300px]" :src=content.img alt="Agenda Photo">
+          <img class="rounded-t-lg mx-auto object-fill h-[250px] w-full" :src=content.img alt="Agenda Photo">
           <h1 class="bg-navy py-5 px-5 mx-auto h-32 text-white text-xl rounded-b-lg">{{ content.desc }}</h1>
         </SwiperSlide>
       </Swiper>

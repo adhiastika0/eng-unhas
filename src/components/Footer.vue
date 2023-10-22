@@ -8,7 +8,7 @@
       <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
         <div class="flex flex-col items-stretch w-3/12 max-md:w-full max-md:ml-0">
           <div class="relative flex flex-col mt-20 mb-30 ">
-            <h2 class="text-white text-xl font-semibold w-[221px] mt-6  ">Contact Us</h2>
+            <h2 class="text-white text-xl font-semibold w-[221px] mt-6 ml-10">Contact Us</h2>
             <div class="flex flex-col w-[294px] max-w-full items-start justify-between space-y-5 ml-10 mt-4">
               <div class="self-stretch flex flex-row ">
                 <div>
@@ -83,7 +83,7 @@
               <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
                 <div class="flex flex-col items-stretch w-[47%] max-md:w-full max-md:ml-0">
                   <div class="flex flex-col mt-2 max-md:mt-12">
-                    <h2 class="text-white text-xl font-semibold w-[221px] ml-5">Search By Google</h2>
+                    <h2 class="text-white text-xl font-semibold w-[221px] ml-12">Search By Google</h2>
                     <div class="pt-2 relative mx-auto text-gray-600 mt-3">
                       <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                         type="search" name="search" placeholder="Search">
@@ -97,7 +97,7 @@
                         </svg>
                       </button>
                     </div>
-                    <div class="text-white text-xl font-semibold w-[221px] mt-10">Supported By</div>
+                    <div class="text-white text-xl font-semibold w-[221px] mt-10 ml-12">Supported By</div>
                     <div class="flex w-[204px] max-w-full items-start justify-between gap-5 mt-7 ml-12">
                       <img src="../assets/bla.png" alt="">
                       <img src="../assets/blahu.png" alt="">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="flex flex-col items-stretch w-[53%] ml-5 max-md:w-full max-md:ml-0">
                   <div class="flex grow flex-col max-md:mt-12">
-                    <h2 class="text-white text-xl font-semibold w-[221px] mt-2">Get Our Location</h2>
+                    <h2 class="text-white text-xl font-semibold w-[221px] mt-2 ml-8">Get Our Location</h2>
                     <img src="../assets/maps.png" alt="maps" class="mt-8 ml-8 mb-3">
                   </div>
                 </div>

@@ -20,7 +20,7 @@
       </ul>
     </div>
     <div class="container mx-auto relative min-w-full">
-      <img src="../assets/jumbotron.png" alt="Faculty of Engineering" class="opacity-80">
+      <img src="../assets/jumbotron.png" alt="Faculty of Engineering" class="opacity-80 min-w-full">
       <div class="absolute bg-gray text-white flex justify-start bottom-40 left-28 items-center py-2 px-2 text-3xl font-extrabold font-Montserrat">
         WELCOME TO
       </div>
