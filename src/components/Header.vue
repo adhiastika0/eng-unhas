@@ -19,9 +19,15 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar">
-    <div class="container min-w-full mx-auto py-2 flex items-center bg-navy">
-      <img src="../assets/logo-teknik.png" alt="Teknik Unhas" class="mx-28">
+  <nav class="">
+    <div class="container min-w-full py-2 bg-navy">
+      <div class="container mx-auto">
+        <img
+          src="../assets/logo-teknik.png"
+          alt="Teknik Unhas"
+          class="mx-auto lg:mx-28"
+        />
+      </div>
     </div>
     <div
       class="container min-w-full mx-auto bg-red font-Montserrat font-semibold text-sm"
@@ -388,7 +394,7 @@ export default {
         </div>
       </div>
     </div>
-    </nav>
+  </nav>
 </template>
 
 <script>
