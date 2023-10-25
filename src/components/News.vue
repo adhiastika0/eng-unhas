@@ -20,7 +20,7 @@
             </div>
             <div class="flex flex-col basis-1/3 mt-5 ml-0 lg:mt-0 lg:space-y-3">
                 <div class="bg-navy font-Montserrat text-white font-medium text-center rounded text-xl py-2 lg:text-3xl">INFORMATION</div>
-                <div class="border-2 border-navy rounded-sm space-y-4 p-2 grid lg:space-y-6 lg:p-5 lg:justify-items-center">
+                <div class="border-2 border-navy rounded-sm space-y-4 p-2 grid mt-3 lg:space-y-6 lg:p-5 lg:justify-items-center">
                     <div class="space-y-1 lg:space-y-2">
                         <p class="text-black font-Inter text-left font-light text-[12px] lg:text-sm">THE 3RD EPI INTERNATIONAL CONFERENCE ON SCIENCE AND ENGINEERING 2019</p>
                         <div class="flex items-center space-x-1 lg:space-x-2">
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pt-[13px] lg:pt-2 place-self-center">
+                    <div class="pt-[10px] place-self-center">
                         <div class="border-2 border-red basis-1/3 w-40 flex justify-center place-self-center">
                             <p class="text-red font-Inter font-semibold text-[10px] lg:text-[14px]">All Information</p>
                         </div>
