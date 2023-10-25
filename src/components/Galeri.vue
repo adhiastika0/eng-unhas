@@ -58,14 +58,14 @@ export default {
 </style>
 
 <template v-slot="swiper-button-next">
-  <div class="">
+  <div class="mx-28 xl:mx-auto">
     <p
       class="text-navy flex mx-auto justify-center text-3xl font-Montserrat font-bold underline pb-5"
     >
       GALERI
     </p>
     <Swiper
-      class="mx-auto max-w-7xl"
+      class="max-w-7xl"
       :rewind="true"
       :navigation="true"
       :autoplay="{
