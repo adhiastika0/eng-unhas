@@ -58,7 +58,7 @@ export default {
 </style>
 
 <template v-slot="swiper-button-next">
-  <div class="mx-28 xl:mx-auto">
+  <div class="mx-28">
     <p
       class="text-navy flex mx-auto justify-center text-3xl font-Montserrat font-bold underline pb-5"
     >
@@ -67,7 +67,7 @@ export default {
     <Swiper
       class="max-w-7xl"
       :rewind="true"
-      :navigation="true"
+      :navigation="false"
       :autoplay="{
         delay: 2500,
         disableOnInteraction: false,
@@ -91,12 +91,12 @@ export default {
         :key="content.desc"
       >
         <img
-          class="rounded-t-lg mx-auto object-fill h-[200px] w-full lg:h-[300px]"
+          class="rounded-t-lg mx-auto object-fill h-[100px] w-full lg:h-[250px]"
           :src="content.img"
           alt="Agenda Photo"
         />
         <h1
-          class="bg-navy py-2 px-5 mx-auto h-20 text-white text-sm lg:py-5 lg:h-32 lg:text-xl rounded-b-lg"
+          class="bg-navy py-2 px-5 mx-auto h-15 text-white text-[10px] lg:py-5 lg:h-32 lg:text-[15px] rounded-b-lg"
         >
           {{ content.desc }}
         </h1>

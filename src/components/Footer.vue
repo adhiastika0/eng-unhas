@@ -9,7 +9,7 @@
     </div>
 
     <section
-      class="relative flex flex-col items-center justify-center w-full max-w-[1219px] mx-auto gap-x-3 p-8 md:flex-row"
+      class="relative flex flex-col items-center justify-center w-full max-w-[1280px] mx-auto gap-x-3 p-8 lg:flex-row"
     >
       <div class="basis-1/3 relative flex flex-col">
         <div class="mx-auto">
@@ -137,7 +137,7 @@
 
     <section class="relative self-center w-full max-w-[1219px] mb-10 px-5">
       <hr class="my-6 sm:mx-auto text-white" />
-      <div class="flex flex-nowrap sm:items-start justify-between">
+      <div class="flex flex-col-reverse lg:flex-row gap-5 justify-between">
         <p
           class="text-white font-semibold self-center max-w-[399px] grow shrink-0 basis-auto my-auto"
         >
