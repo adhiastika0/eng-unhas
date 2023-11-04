@@ -13,27 +13,57 @@ export default {
         },
         {
           label: 'Profile',
-          items: ['News', 'History', 'Vision, Mission and Objectives', 'Management'],
+          items: [
+            'News',
+            'History',
+            'Vision, Mission and Objectives',
+            'Management',
+          ],
         },
         {
           label: 'Academics',
-          items: ['Departements', 'Master Program', 'Doctoral Program', 'Professional Program', 'Acreditation'],
+          items: [
+            'Departements',
+            'Master Program',
+            'Doctoral Program',
+            'Professional Program',
+            'Acreditation',
+          ],
         },
         {
           label: 'Resources',
-          items: ['Professor', 'Administration', 'Campus Facilities', 'Library'],
+          items: [
+            'Professor',
+            'Administration',
+            'Campus Facilities',
+            'Library',
+          ],
         },
         {
           label: 'K3',
-          items: ['K3 Profile', 'Organization Structure of K3', 'K3 FT-UH', 'Files'],
+          items: [
+            'K3 Profile',
+            'Organization Structure of K3',
+            'K3 FT-UH',
+            'Files',
+          ],
         },
         {
           label: 'Student Affairs',
-          items: ['Student Dormitory', 'Student Character', 'Student Achievment', 'Inbound and Outbond'],
+          items: [
+            'Student Dormitory',
+            'Student Character',
+            'Student Achievment',
+            'Inbound and Outbond',
+          ],
         },
         {
           label: 'Research and Innovation',
-          items: ['List of LBE Research', 'Innovate Products', 'Intelectuals Rights'],
+          items: [
+            'List of LBE Research',
+            'Innovate Products',
+            'Intelectuals Rights',
+          ],
         },
         {
           label: 'Partnership',
@@ -41,7 +71,12 @@ export default {
         },
         {
           label: 'QA-RI',
-          items: ['QA-RI Profile', 'Documents', 'Internal Academic', 'Accreditation'],
+          items: [
+            'QA-RI Profile',
+            'Documents',
+            'Internal Academic',
+            'Accreditation',
+          ],
         },
         {
           label: 'COT',
@@ -60,6 +95,11 @@ export default {
     toggleDropdown(index) {
       let dropdown = document.querySelector(`#dropdown${index}`);
       dropdown.classList.toggle('hidden');
+    },
+
+    addDropdown(index) {
+      let dropdown = document.querySelector(`#dropdown${index}`);
+      dropdown.classList.add('hidden');
     },
   },
 };
@@ -87,20 +127,23 @@ export default {
           class="relative z-50"
         >
           <div
-            @click="toggleDropdown(index)"
+            @mouseover="toggleDropdown(index)"
+            @mouseout="addDropdown(index)"
             class="hover:bg-white hover:text-red"
           >
             <div class="py-2 px-4">
               <a href="#">{{ item.label }}</a>
             </div>
+
             <div class="absolute">
-              <div :id="'dropdown' + index" class="absolute my-2 hidden">
+              <div :id="'dropdown' + index" class="absolute hidden">
                 <div
+                  @click="toggleDropdown(index)"
                   v-for="(dropdownItem, dropdownIndex) in item.items"
                   :key="dropdownIndex"
                   class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
                 >
-                  {{ dropdownItem }}
+                  <a href=""> {{ dropdownItem }} </a>
                 </div>
               </div>
             </div>
