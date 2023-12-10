@@ -1,8 +1,62 @@
 <script>
+import { onMounted, ref } from 'vue';
+
 export default {
   name: 'Header',
   props: {
     msg: String,
+  },
+  setup() {
+    // Menggunakan ref untuk membuat navbarItems sebagai variabel reaktif
+    const navbarItems = ref([]);
+
+    const getNavbar = async () => {
+      try {
+        const response = await fetch(
+          'https://directus-npm-test-production.up.railway.app/items/navigation?filter[id]=main&fields=*,items.*,items.page.*,items.page.blocks.*,items.children.*'
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        console.log(responseData);
+
+        // Check if the 'data' property exists in the response
+        if (Object.prototype.hasOwnProperty.call(responseData, 'data')) {
+          const data = responseData.data;
+
+          // Mengubah nilai navbarItems dengan nilai yang baru
+          navbarItems.value = data.flatMap((data) =>
+            data.items.map((child) => ({
+              title: child.title,
+              children: child.children.map((subChild) => subChild.title),
+            }))
+          );
+
+          console.log(navbarItems.value);
+
+          // Mengembalikan navbarItems sebagai variabel yang dapat diakses di komponen lain
+          return { navbarItems };
+        } else {
+          console.error('Invalid API response:', responseData);
+          // Handle this case according to your requirements
+          return { navbarItems: [] };
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+        // Handle the error gracefully (e.g., show a message to the user)
+        throw error; // Re-throw the error to handle it at the component level if needed
+      }
+    };
+
+    onMounted(async () => {
+      // Panggil getNavbar untuk menginisialisasi navbarItems saat komponen di-mount
+      await getNavbar();
+    });
+
+    // Mengembalikan navbarItems sebagai variabel yang dapat diakses di tampilan atau komponen lain
+    return { navbarItems };
   },
 
   methods: {
@@ -33,341 +87,32 @@ export default {
       class="container min-w-full mx-auto bg-red font-Montserrat font-semibold text-sm"
     >
       <div class="flex flex-row justify-center flex-wrap text-white px-10">
+        <!-- Loop untuk membuat dropdown -->
         <div
-          @click="toogleDropdown()"
+          v-for="(item, index) in navbarItems"
+          :key="index"
           class="relative z-50"
           id="dropdownButton"
         >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">News</a>
+          <div
+            @mouseover="toggleDropdown(index)"
+            @mouseout="addDropdown(index)"
+            class="hover:bg-white hover:text-red"
+          >
+            <div class="py-2 px-4">
+              <a href="#">{{ item.title }}</a>
             </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden z-60">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">Profile</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden z-50">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">Academic</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">Resources</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">K3</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">Student Affairs</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">Research and Innovation</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">News</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">News</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          @click="toogleDropdown()"
-          class="relative z-50"
-          id="dropdownButton"
-        >
-          <div class="relative flex flex-row space-y-10">
-            <div class="hover:bg-white hover:text-red py-2 px-4">
-              <a href="#">News</a>
-            </div>
-            <div id="dropdown" class="absolute left-[0px] my-2 hidden">
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                News
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
-              </div>
-              <div
-                class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
-              >
-                NEWS
+            <div class="absolute">
+              <div :id="'dropdown' + index" class="absolute hidden">
+                <div
+                  @click="toggleDropdown(index)"
+                  v-for="(dropdownItem, dropdownIndex) in item.children"
+                  :key="dropdownIndex"
+                  class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
+                >
+                  <a href=""> {{ dropdownItem }} </a>
+                </div>
               </div>
             </div>
           </div>
