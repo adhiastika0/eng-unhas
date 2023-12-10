@@ -104,7 +104,7 @@ export default {
             class="hover:bg-white hover:text-red"
           >
             <div class="py-2 px-4">
-              <a href="#">{{ item.title }}</a>
+              <router-link :to="'/'">{{ item.title }}</router-link>
             </div>
 
             <div class="absolute">
@@ -115,9 +115,9 @@ export default {
                   :key="dropdownIndex"
                   class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
                 >
-                  <a :href="'http://localhost:8080/' + dropdownItem.slug">{{
+                  <router-link :to="'/pages/' + dropdownItem.slug">{{
                     dropdownItem.title
-                  }}</a>
+                  }}</router-link>
                 </div>
               </div>
             </div>
