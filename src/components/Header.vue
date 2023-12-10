@@ -13,7 +13,7 @@ export default {
     const getNavbar = async () => {
       try {
         const response = await fetch(
-          'https://directus-npm-test-production.up.railway.app/items/navigation?filter[id]=main&fields=*,items.*,items.page.*,items.page.blocks.*,items.children.*'
+          'https://directus-npm-test-production.up.railway.app/items/navigation?filter[id]=main&fields=*,items.*,items.children.*,items.children.page.*'
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -29,8 +29,11 @@ export default {
           // Mengubah nilai navbarItems dengan nilai yang baru
           navbarItems.value = data.flatMap((data) =>
             data.items.map((child) => ({
-              title: child.title,
-              children: child.children.map((subChild) => subChild.title),
+              title: child.title, // Menambahkan id dari child
+              children: child.children.map((subChild) => ({
+                title: subChild.title,
+                slug: subChild.page ? subChild.page.slug : null, // Menambahkan slug jika page ada
+              })),
             }))
           );
 
@@ -112,7 +115,9 @@ export default {
                   :key="dropdownIndex"
                   class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
                 >
-                  <a href=""> {{ dropdownItem }} </a>
+                  <a :href="'http://localhost:8080/' + dropdownItem.slug">{{
+                    dropdownItem.title
+                  }}</a>
                 </div>
               </div>
             </div>
