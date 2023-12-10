@@ -5,7 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { ref } from 'vue';
+
+import { onMounted, ref } from 'vue';
 
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
@@ -86,8 +87,8 @@ export default {
     });
 
     return {
-      Agenda,
-      modules: [Navigation, Pagination, Mousewheel, Keyboard],
+      galeri,
+      modules
     };
   },
 };

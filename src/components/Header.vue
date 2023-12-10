@@ -60,12 +60,13 @@ export default {
   },
 
   methods: {
-    toogleDropdown() {
-      let dropdown = document.querySelector('#dropdownButton #dropdown');
+    toggleDropdown(index) {
+      let dropdown = document.querySelector(`#dropdown${index}`);
       dropdown.classList.toggle('hidden');
     },
-    hideDropdown() {
-      let dropdown = document.querySelector('#dropdownButton #dropdown');
+
+    addDropdown(index) {
+      let dropdown = document.querySelector(`#dropdown${index}`);
       dropdown.classList.add('hidden');
     },
   },
@@ -117,7 +118,6 @@ export default {
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <div class="container mx-auto relative min-w-full z-0">
@@ -141,12 +141,3 @@ export default {
     </div>
   </nav>
 </template>
-
-<script>
-export default {
-  name: 'Header',
-  props: {
-    msg: String,
-  },
-};
-</script>
