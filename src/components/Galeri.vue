@@ -27,7 +27,7 @@ export default {
     const getGaleri = async () => {
       try {
         const response = await fetch(
-          'https://directus-npm-test-production.up.railway.app/items/block_columns/d87e71df-149f-4fcb-839e-ad876598c370'
+          'https://directus-npm-test-production.up.railway.app/items/block_columns/24b3b113-0570-4cfc-a3e7-3c6d4d0e0173'
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -57,7 +57,7 @@ export default {
               // Assuming 'data' is an object with properties 'title' and 'image'
               return {
                 title: itemData.data.title,
-                image: itemData.data.image
+                image: itemData.data.image,
               };
             })
           );
@@ -88,7 +88,7 @@ export default {
 
     return {
       galeri,
-      modules
+      modules,
     };
   },
 };
