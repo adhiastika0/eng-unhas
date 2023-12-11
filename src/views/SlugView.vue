@@ -1,7 +1,7 @@
 <template>
   <div class="slug">
-    <h1>This is an about page{{ $route.params.slugParam }}</h1>
-    <div v-for="(item, index) in pageItems" :key="index">
+    <div class="bg-navy text-white text-xl py-5 px-5">Halaman : {{ $route.params.slugParam }}</div>
+    <div v-for="(item, index) in pageItems" :key="index" class="py-5 px-5">
       <div>{{ item.items.headline }}</div>
       <div v-html="item.items.content"></div>
     </div>

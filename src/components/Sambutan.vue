@@ -1,16 +1,36 @@
 <template>
-  <div class="space-y-3 mx-28">
-    <div class="flex justify-center text-navy font-bold font-Montserrat underline decoration-navy text-[20px] lg:text-[25px]">DEAN'S WELCOME REMARKS</div>
+  <div v-if="remarks.length > 0" class="space-y-3 mx-28">
+    <div class="flex justify-center text-navy font-bold font-Montserrat underline decoration-navy text-[20px] lg:text-[25px]">SAMBUTAN DEKAN</div>
     <div class="container flex flex-col justify-center items-center mx-auto p-7 bg-navy space-x-5 rounded-lg lg:flex-row">
       <div class="px-6">
-        <img src="../assets/dekan.png" class="w-[200px] pb-3 lg:pb-0 lg:w-[5000px]">
+        <img :src="remarks[0].image" class="w-[200px] pb-3 lg:pb-0 lg:w-[2000px]">
       </div>
       <div class="space-y-4 px-2 lg:px-6">
-        <p class="text-[8px] text-white font-Inter text-justify lg:text-[12px]">Engineering Faculty of Universitas Hasanuddin has been established since 1960 and ever since has been growing in producing excellent widely accepted graduates throughout the country and overseas employment. With all resources and facilities we have Engineering Faculty of Universitas Hasanuddin is committed to realize its vision to become a leading institution in the field of engineering for global sustainability with the spirit of maritime culture. The main mission of the establishment of the Faculty of Engineering at that time was to provide opportunities for all students from the regions to pursue higher education in order to meet the needs of the technical expert.
-        </p>  
-        <p class="text-[8px] text-white font-Inter text-justify lg:text-[12px]">In the beginning, The Faculty of Engineering curriculum was only a single curriculum with a limited number of elective subjects. This curriculum has undergone various changes and developments since 1963, including the transition from the Bachelor Program, the 6-year Bachelor Program, to the Undergraduate Program. In 1985, the Faculty of Engineering UNHAS moved the campus to Tamalanrea. The Faculty of Engineering occupies the 1st floor of the building and part of the Heavy Laboratory building. At the same time, new laboratory equipment was procured. For ten years from 1986 to 1996, the Faculty of Engineering received the Engineer Acceleration Project (PPI) aimed at increasing graduation productivity. In the beginning, the Faculty of Engineering, Hasanuddin University on September 10, 1960 there were only 3 departments, namely Civil Engineering, Mechanical Engineering and Shipping Engineering. Furthermore, the Faculty of Engineering has 6 departments by opening the Department of Electrical Engineering, Architectural Engineering and Geological Engineering with a total of 23 study programs. Along with the development, the Faculty of Engineering Unhas was also built by the Faculty of Engineering which is located at the Gowa Engineering Campus which is currently inaugurated by the Vice President of the Republic of Indonesia, Mr. Jusuf Kalla on June 23, 2018. 5 Doctoral Study Programs and 1 Engineer Professional Education Study Program (PPI). With this study program we are confident to welcome all stake holders within our reach to enroll, collaborate, and share the opportunities that we have to continue developing our nation facing the Indutrial Revolution 4.0 in the future. Welcome to Faculty of Engineering.
-        </p>
+        <p class="text-[8px] text-white font-Inter text-justify lg:text-[13px]">{{ remarks[0].fill }}</p>  
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    data() {
+        return {
+            remarks: []
+        }
+    },
+    async created() {
+        try {
+            let response = await axios.get('https://directus-npm-test-production.up.railway.app/items/remarks')
+            this.remarks = response.data.data
+            for (let i = 0; i < this.remarks.length; i++) {
+                this.remarks[i].image = `https://directus-npm-test-production.up.railway.app/assets/${this.remarks[i].image}`
+            }
+        } catch(error) {
+            console.error(error)
+        }
+    }
+}
+</script>
