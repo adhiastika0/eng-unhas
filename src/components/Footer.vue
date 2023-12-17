@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-col overflow-hidden relative flex min-h-[650px] bg-navy">
+  <main class="flex-col overflow-hidden relative flex bg-navy">
     <div class="container mx-auto py-2 flex justify-center mt-10">
       <img
         src="../assets/unhas.png"
@@ -9,12 +9,12 @@
     </div>
 
     <section
-      class="relative flex flex-col items-center justify-center w-full max-w-[1280px] mx-auto gap-x-3 p-8 lg:flex-row"
+      class="relative flex flex-col items-center justify-center w-full max-w-[1219px] mx-auto gap-x-3 p-8 md:flex-row"
     >
       <div class="basis-1/3 relative flex flex-col">
         <div class="mx-auto">
           <h2 class="text-white text-xl font-semibold w-[221px] mt-6">
-            Contact Us
+            ALAMAT & KONTAK
           </h2>
           <div
             class="flex flex-col w-[294px] max-w-full space-y-5 mt-4"
@@ -96,7 +96,7 @@
       <div class="flex flex-col mt-10 basis-1/3">
         <div class="mx-auto">
           <h2 class="text-white text-xl font-semibold w-[221px]">
-            Search By Google
+            PENELUSURAN OLEH GOOGLE
           </h2>
           <div class="pt-2 relative text-gray-600 mt-5">
             <input
@@ -108,7 +108,7 @@
           </div>
 
           <div class="text-white text-xl font-semibold w-[221px] mt-10">
-            Supported By
+            DIDUKUNG OLEH
           </div>
           <div
             class="flex w-[204px] max-w-full items-start justify-between gap-5 mt-7"
@@ -123,7 +123,7 @@
         <div class="mx-auto">
           <div class="flex grow flex-col">
             <h2 class="text-white text-xl font-semibold w-[221px]">
-              Get Our Location
+              LOKASI
             </h2>
               <img
                 src="../assets/maps.png"
@@ -135,9 +135,9 @@
       </div>
     </section>
 
-    <section class="relative self-center w-full max-w-[1219px] mb-10 px-5">
+    <section class="relative self-center w-full max-w-[1219px] mb-5 px-5">
       <hr class="my-6 sm:mx-auto text-white" />
-      <div class="flex flex-col-reverse lg:flex-row gap-5 justify-between">
+      <div class="flex flex-nowrap sm:items-start justify-between">
         <p
           class="text-white font-semibold self-center max-w-[399px] grow shrink-0 basis-auto my-auto"
         >

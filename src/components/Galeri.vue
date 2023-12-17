@@ -1,11 +1,16 @@
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// import Swiper core and required modules
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
 import { onMounted, ref } from 'vue';
+
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
+// Import Swiper styles
 export default {
   components: {
     Swiper,
@@ -21,7 +26,9 @@ export default {
 
     const getGaleri = async () => {
       try {
-        const response = await fetch('http://localhost:8055/items/galery');
+        const response = await fetch(
+          'https://directus-npm-test-production.up.railway.app/items/block_columns/24b3b113-0570-4cfc-a3e7-3c6d4d0e0173'
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -32,13 +39,30 @@ export default {
         if (Object.prototype.hasOwnProperty.call(responseData, 'data')) {
           const data = responseData.data;
 
-          // Assuming 'data' is an array of objects with properties 'title' and 'image'
-          const mappedData = data.map((item) => ({
-            title: item.title,
-            image: item.image,
-          }));
+          // Assuming 'gallery_items' is an array of gallery items IDs
+          const galleryItems = data.rows;
 
-          return mappedData;
+          // Fetch gallery item details using the IDs
+          const galleryData = await Promise.all(
+            galleryItems.map(async (itemId) => {
+              const itemResponse = await fetch(
+                `https://directus-npm-test-production.up.railway.app/items/block_columns_rows/${itemId}`
+              );
+              if (!itemResponse.ok) {
+                throw new Error(`HTTP error! Status: ${itemResponse.status}`);
+              }
+
+              const itemData = await itemResponse.json();
+
+              // Assuming 'data' is an object with properties 'title' and 'image'
+              return {
+                title: itemData.data.title,
+                image: itemData.data.image,
+              };
+            })
+          );
+
+          return galleryData;
         } else {
           console.error('Invalid API response:', responseData);
           // Handle this case according to your requirements
@@ -71,14 +95,13 @@ export default {
 </script>
 
 <style scoped>
-/* Add your scoped styles here */
 .swiper-button-prev {
   background-color: navy !important;
 }
 </style>
 
-<template>
-  <div class="mx-28">
+<template v-slot="swiper-button-next">
+  <div class="mx-28 xl:mx-auto">
     <p
       class="text-navy flex mx-auto justify-center text-3xl font-Montserrat font-bold underline pb-5"
     >
@@ -107,7 +130,7 @@ export default {
         >
           <img
             class="rounded-t-lg mx-auto object-fill h-[100px] w-full lg:h-[250px]"
-            :src="`http://localhost:8055/assets/${content.image}`"
+            :src="`http://directus-npm-test-production.up.railway.app/assets/${content.image}`"
             alt="Agenda Photo"
           />
           <h1
