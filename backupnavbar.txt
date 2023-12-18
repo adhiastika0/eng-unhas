@@ -1,0 +1,154 @@
+<script>
+import { onMounted, ref } from 'vue';
+
+export default {
+  name: 'Header',
+  props: {
+    msg: String,
+  },
+  setup() {
+    const navbarItems = ref([]);
+
+    const getNavbar = async () => {
+      try {
+        const response = await fetch(
+          'https://directus-npm-test-production.up.railway.app/items/navigation?filter[id]=main&fields=*,items.*,items.page.*,items.page.blocks.*,items.children.*'
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        console.log(responseData);
+
+        // Check if the 'data' property exists in the response
+        if (Object.prototype.hasOwnProperty.call(responseData, 'data')) {
+          const data = responseData.data;
+          return data;
+        } else {
+          console.error('Invalid API response:', responseData);
+          // Handle this case according to your requirements
+          return [];
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+        // Handle the error gracefully (e.g., show a message to the user)
+        throw error; // Re-throw the error to handle it at the component level if needed
+      }
+    };
+
+    onMounted(async () => {
+      try {
+        const data = await getNavbar();
+        console.log('API Response:', data);
+        navbarItems.value = data; // Update the data
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle the error gracefully (e.g., show a message to the user)
+      }
+    });
+
+    return { navbarItems };
+  },
+
+  methods: {
+    toggleDropdown(index) {
+      let dropdown = document.querySelector(`#dropdown${index}`);
+      dropdown.classList.toggle('hidden');
+    },
+
+    addDropdown(index) {
+      let dropdown = document.querySelector(`#dropdown${index}`);
+      dropdown.classList.add('hidden');
+    },
+  },
+};
+</script>
+
+<template>
+  <nav class="">
+    <div class="container min-w-full py-2 bg-navy">
+      <div class="container mx-auto">
+        <img
+          src="../assets/logo-teknik.png"
+          alt="Teknik Unhas"
+          class="mx-auto lg:mx-28"
+        />
+      </div>
+    </div>
+    <div
+      class="container relative min-w-full bg-red font-Montserrat font-semibold text-sm"
+    >
+      <div class="flex justify-center flex-wrap text-white px-10">
+        <!-- Loop untuk membuat dropdown -->
+        <div
+          v-for="(item, parentIndex) in navbarItems"
+          :key="parentIndex"
+          class="relative z-50"
+        >
+          <div
+          >
+            <div class="flex flex-row">
+              <div
+                v-for="(dropdownParent, index) in item.items"
+                :key="index"
+                class="flex flex-row"
+              >
+                <a
+                  @mouseover="toggleDropdown(parentIndex)"
+                  @mouseout="addDropdown(parentIndex)"
+                  class="flex py-2 px-4 hover:bg-white hover:text-red"
+                  href="#"
+                >
+                  {{ index }}: {{ dropdownParent.title }}
+                </a>
+                <div
+                  v-for="(dropdownChild, index) in item.items"
+                  :key="index"
+                  class="flex"
+                >
+                  <div
+                    v-for="(dropdownParent, index) in dropdownChild.children"
+                    :key="index"
+                    :id="'dropdown' + index"
+                    class="absolute hidden"
+                  >
+                    <div
+                      v-for="(dropdownParent, index) in dropdownChild.children"
+                      :key="index"
+                      @click="toggleDropdown(parentIndex)"
+                      class="w-40 py-2 px-5 bg-white border-gray shadow-md text-red cursor-pointer hover:bg-red hover:text-white hover:border-white"
+                    >
+                      <a href=""> {{ dropdownParent.title }} </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Akhir loop dropdown -->
+      </div>
+    </div>
+    <div class="container mx-auto relative min-w-full z-0">
+      <img
+        src="../assets/jumbotron.png"
+        alt="Faculty of Engineering"
+        class="opacity-80 object-cover min-w-full max-h-[500px] z-0"
+      />
+      <div class="absolute mx-auto left-0 right-0 max-w-7xl">
+        <div
+          class="absolute bg-gray text-white py-2 px-2 mx-auto sm:left-28 sm:text-md sm:bottom-32 lg:text-3xl lg:bottom-36 font-extrabold font-Montserrat"
+        >
+          WELCOME TO
+        </div>
+        <div
+          class="absolute bg-navy text-white py-2 px-2 sm:left-28 sm:text-md sm:bottom-20 lg:text-3xl font-extrabold font-Montserrat"
+        >
+          FACULTY OF ENGINEERING, HASANUDDIN UNIVERSITY
+        </div>
+      </div>
+    </div>
+  </nav>
+</template>

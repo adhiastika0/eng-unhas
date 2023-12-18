@@ -3,7 +3,7 @@
     <div class="container min-w-full py-2 bg-navy">
       <div class="container mx-auto">
         <img
-          src="../assets/logo-teknik.png"
+          src="./assets/logo-teknik.png"
           alt="Teknik Unhas"
           class="mx-auto"
         />
@@ -49,7 +49,7 @@
     </div>
     <div class="container mx-auto relative min-w-full z-0">
       <img
-        src="../assets/jumbotron.png"
+        src="./assets/jumbotron.png"
         alt="Faculty of Engineering"
         class="opacity-80 object-cover min-w-full max-h-[500px] z-0"
       />

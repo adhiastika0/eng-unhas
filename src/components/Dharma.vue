@@ -1,11 +1,11 @@
 <template>
   <div class="bg-navy text-white mx-auto min-w-full">
     <div>
-      <h1 class="text-2xl font-bold underline text-center my-4">
+      <h1 class="text-2xl font-bold underline text-center my-4 pt-5">
         {{ pageTitle }}
       </h1>
     </div>
-    <div class="flex flex-col items-center gap-x-5 md:flex-row mx-28 py-10 max-w-7xl">
+    <div class="flex flex-col items-center mx-auto gap-x-5 md:flex-row mx-28 py-10 max-w-7xl">
       <div class="mx-auto">
         <img
           :src="pageImage"
