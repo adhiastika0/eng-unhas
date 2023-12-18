@@ -5,7 +5,7 @@
         <img
           src="./assets/logo-teknik.png"
           alt="Teknik Unhas"
-          class="mx-auto lg:mx-28"
+          class="mx-auto"
         />
       </div>
     </div>
@@ -57,12 +57,12 @@
         <div
           class="absolute bg-gray text-white py-2 px-2 mx-auto sm:left-28 sm:text-md sm:bottom-32 lg:text-3xl lg:bottom-36 font-extrabold font-Montserrat"
         >
-          WELCOME TO
+          SELAMAT DATANG DI
         </div>
         <div
           class="absolute bg-navy text-white py-2 px-2 sm:left-28 sm:text-md sm:bottom-20 lg:text-3xl font-extrabold font-Montserrat"
         >
-          FACULTY OF ENGINEERING, HASANUDDIN UNIVERSITY
+          FAKULTAS TEKNIK, UNIVERSITAS HASANUDDIN
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="remarks.length > 0" class="space-y-3 mx-28">
+  <div v-if="remarks.length > 0" class="space-y-3 mx-28 mt-9">
     <div class="flex justify-center text-navy font-bold font-Montserrat underline decoration-navy text-[20px] lg:text-[25px]">SAMBUTAN DEKAN</div>
     <div class="container flex flex-col justify-center items-center mx-auto p-7 bg-navy space-x-5 rounded-lg lg:flex-row">
       <div class="px-6">
